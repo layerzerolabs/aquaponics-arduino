@@ -10,8 +10,8 @@
 #include "DigitalWaterLevelSensor.h"
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
-byte ip[]     = { 10, 0, 1, 92 };                       // the arduino's ip address
-byte server[] = { 10, 0, 1, 91 };                      // the mqtt server ip address
+byte ip[]     = { 172, 16, 1, 92 };                       // the arduino's ip address
+byte server[] = { 172, 16, 1, 91 };                      // the mqtt server ip address
 
 byte airTempAddress[] = {0x28, 0xFF, 0x00, 0x36, 0x05, 0x00, 0x00, 0x3C};
 byte waterTempAddress[] = {0x28, 0x8A, 0xF9, 0x35, 0x05, 0x00, 0x00, 0x92};

@@ -7,5 +7,4 @@ class AnalogueWaterLevelSensor : public Sensor
     int read();
   private:
     int pin;
-    float total;
 };

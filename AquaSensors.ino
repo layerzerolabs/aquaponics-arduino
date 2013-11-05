@@ -24,7 +24,7 @@ int air1CurrentPin = A7;
 int air2CurrentPin = A10;
 int waterCurrentPin = A13;
 int digitalWaterLevelPins[] = {3, 5, 6, 9}; // low to high
-int analogueWaterLevelPin = A0;
+int analogueWaterLevelPin = A1;
 
 void callback(char* topic, byte* payload, unsigned int length) {} // handle incoming mqtt
 
@@ -62,14 +62,15 @@ void setup(void) {
 }
 
 void loop(void) {
-  read(airTemp);
-  read(waterTemp);
-  read(air1Current);
-  read(air2Current);
-  read(waterCurrent);
-  read(analogueWaterLevel);
+  //read(airTemp);
+  //read(waterTemp);
+  //read(air1Current);
+  //read(air2Current);
+  //read(waterCurrent);
   read(digitalWaterLevel);
-  read(light);
+  //read(light);
+  read(analogueWaterLevel);
+  delay(500);
 }
 
 void read(Sensor &sensor) {

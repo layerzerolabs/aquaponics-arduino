@@ -43,9 +43,9 @@ int TemperatureSensor::read() {
   
   value = (float)raw / 16.0;
   if (value < -20 || value > 120) {
-    return 2;
+    return BAD_DATA;
   }
-  return 0;
+  return OK;
 }
 
 

@@ -1,4 +1,5 @@
 #include "Sensor.h"
+
 class CurrentSensor : public Sensor
 {
   public:

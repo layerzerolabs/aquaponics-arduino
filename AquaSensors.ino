@@ -2,8 +2,6 @@
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_TSL2561.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_TSL2561.h>
 #include <OneWire.h>
 #include <SPI.h>              // Needed for ethernet
 #include <Ethernet.h>         // Ethernet library

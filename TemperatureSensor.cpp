@@ -1,4 +1,3 @@
-//#include "OneWire.h"
 #include "TemperatureSensor.h"
 
 TemperatureSensor::TemperatureSensor(char name[]) {

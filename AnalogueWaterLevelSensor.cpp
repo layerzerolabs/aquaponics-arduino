@@ -1,6 +1,4 @@
 #include "AnalogueWaterLevelSensor.h"
-#include <stdio.h>
-#include <string.h>
 
 AnalogueWaterLevelSensor::AnalogueWaterLevelSensor(char name[]) {
   this->name = name;

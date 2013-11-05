@@ -1,6 +1,4 @@
 #include "DigitalWaterLevelSensor.h"
-#include <stdio.h>
-#include <string.h>
 
 DigitalWaterLevelSensor::DigitalWaterLevelSensor(char name[]) {
   this->name = name;

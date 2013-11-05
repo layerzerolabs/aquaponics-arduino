@@ -1,6 +1,4 @@
 #include "CurrentSensor.h"
-#include <stdio.h>
-#include <string.h>
 
 CurrentSensor::CurrentSensor(char name[]) {
   this->name = name;

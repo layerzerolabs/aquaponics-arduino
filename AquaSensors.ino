@@ -67,11 +67,14 @@ void loop(void) {
 }
 
 void read(Sensor &sensor) {
+  char mqttOut[50];
   int returnCode = sensor.read();
   if (returnCode == sensor.LOST_CONNECTION){
-    char* output = strcat("lost the ", sensor.name);
-    Serial.println(output);
+    String errorMessage = String("Lost the ");
+    errorMessage += sensor.name;
     client.publish("system", output); 
+    errorMessage.toCharArray(mqttOut, 50);
+    client.publish("system", mqttOut);
   } else if (returnCode == sensor.BAD_DATA) {
     Serial.println("BAD DATA");
   } else if (returnCode == sensor.OK) {

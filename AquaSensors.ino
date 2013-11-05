@@ -1,13 +1,19 @@
 #include "Arduino.h"
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_TSL2561.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_TSL2561.h>
 #include <OneWire.h>
 #include <SPI.h>              // Needed for ethernet
 #include <Ethernet.h>         // Ethernet library
-#include <PubSubClient.h>     // mqtt library - nice work Nick O'Leary
+#include <PubSubClient.h>     // mqtt library
 #include "Sensor.h"
 #include "TemperatureSensor.h"
 #include "CurrentSensor.h"
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
+#include "LightSensor.h"
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
 byte ip[]     = { 172, 16, 1, 92 };                       // the arduino's ip address
@@ -34,6 +40,7 @@ CurrentSensor            air1Current("Air Pump 1 Current");
 CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
+LightSensor              light("Far Light");
 
 void setup(void) {
   Serial.begin(9600);
@@ -53,6 +60,7 @@ void setup(void) {
   waterCurrent.setup(waterCurrentPin);
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
+  light.setup();
 }
 
 void loop(void) {
@@ -63,24 +71,24 @@ void loop(void) {
   read(waterCurrent);
   read(analogueWaterLevel);
   read(digitalWaterLevel);
-  delay(500);
+  read(light);
 }
 
 void read(Sensor &sensor) {
   int returnCode = sensor.read();
   if (returnCode == sensor.LOST_CONNECTION){
-    char* output = strcat("lost the ", sensor.name);
-    Serial.println(output);
-    client.publish("system", output); 
+    char* errorMessage = strcat("lost the ", sensor.name);
+    Serial.println(errorMessage);
+    client.publish("system", errorMessage);
   } else if (returnCode == sensor.BAD_DATA) {
     Serial.println("BAD DATA");
   } else if (returnCode == sensor.OK) {
     Serial.print(sensor.name);
     Serial.print(": ");
     Serial.println(sensor.value);
-    char output[10];
-    dtostrf(sensor.value, 10, 2, output);
-    client.publish(sensor.name, output);
-    client.loop();
+    char reading[10];
+    dtostrf(sensor.value, 10, 2, reading);
+    client.publish(sensor.name, reading);
   }
+  client.loop();
 }

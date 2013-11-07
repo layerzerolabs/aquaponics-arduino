@@ -70,7 +70,7 @@ void loop(void) {
   read(digitalWaterLevel);
   read(light);
   read(analogueWaterLevel);
-  delay(500);
+  //delay(500);
 }
 
 void read(Sensor &sensor) {

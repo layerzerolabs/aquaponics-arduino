@@ -10,9 +10,8 @@ void AnalogueWaterLevelSensor::setup(int pin) {
 }
 
 int AnalogueWaterLevelSensor::read() {
-  int rawValue = analogRead(pin);
-  value = (695 - rawValue) / 7.81 + 5;
-  //value = analogRead(pin);
+  int rawValue = analogRead(pin); 
+  value = (emptyReading - rawValue) / unit + cmBottom;
   return OK;
 }
 

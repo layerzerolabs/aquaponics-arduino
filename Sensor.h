@@ -10,9 +10,10 @@ class Sensor {
 	virtual int read();
         float value;
         char* name;
-        int LOST_CONNECTION = 1;
-        int BAD_DATA = 2;
-        int OK = 0;
+        const int LOST_CONNECTION = 1;
+        const int BAD_DATA = 2;
+        const int OK = 0;
+        const float arduinoVoltage = 4.93;
 };
 
 

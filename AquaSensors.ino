@@ -12,6 +12,7 @@
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
 #include "LightSensor.h"
+#include "pHSensor.h"
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
 byte ip[]     = { 172, 16, 1, 92 };                       // the arduino's ip address
@@ -25,6 +26,7 @@ int air2CurrentPin = A10;
 int waterCurrentPin = A13;
 int digitalWaterLevelPins[] = {3, 5, 6, 9}; // low to high
 int analogueWaterLevelPin = A1;
+int pHPin = A3;
 
 void callback(char* topic, byte* payload, unsigned int length) {} // handle incoming mqtt
 
@@ -39,8 +41,10 @@ CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
 LightSensor              light("Far Light");
+pHSensor                 pH("pH");
 
 void setup(void) {
+  light.setup();
   Serial.begin(9600);
   Serial.println("Starting up");
   Ethernet.begin(mac, ip);
@@ -59,17 +63,19 @@ void setup(void) {
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
   light.setup();
+  pH.setup(pHPin);
 }
 
 void loop(void) {
-  read(airTemp);
-  read(waterTemp);
-  read(air1Current);
-  read(air2Current);
-  read(waterCurrent);
-  read(digitalWaterLevel);
-  read(light);
-  read(analogueWaterLevel);
+  //read(airTemp);
+  //read(waterTemp);
+  //read(air1Current);
+  //read(air2Current);
+  //read(waterCurrent);
+  //read(analogueWaterLevel);
+  //read(digitalWaterLevel);
+  //read(light);
+  read(pH);
   //delay(500);
 }
 

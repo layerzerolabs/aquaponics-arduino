@@ -14,7 +14,7 @@ int CurrentSensor::read() {
     total = total + (.0264 * analogRead(pin) -13.51) / 1000;
     delay(1);
   }
-  value = total;
+  value = abs(total);
   return 0;
 }
 

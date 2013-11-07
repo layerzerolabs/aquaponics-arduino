@@ -62,13 +62,13 @@ void setup(void) {
 }
 
 void loop(void) {
-  //read(airTemp);
-  //read(waterTemp);
-  //read(air1Current);
-  //read(air2Current);
-  //read(waterCurrent);
+  read(airTemp);
+  read(waterTemp);
+  read(air1Current);
+  read(air2Current);
+  read(waterCurrent);
   read(digitalWaterLevel);
-  //read(light);
+  read(light);
   read(analogueWaterLevel);
   delay(500);
 }

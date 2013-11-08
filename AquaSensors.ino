@@ -33,6 +33,10 @@ void callback(char* topic, byte* payload, unsigned int length) {} // handle inco
 EthernetClient ethClient;
 PubSubClient client(server, 1883, callback, ethClient);
 
+String errorMessage;
+char mqttFormattedErrorMessage[100];
+char mqttFormattedSensorValue[10];
+
 TemperatureSensor        airTemp("Air Temperature");
 TemperatureSensor        waterTemp("Water Temperature");
 CurrentSensor            waterCurrent("Water Pump Current");
@@ -80,28 +84,17 @@ void loop(void) {
 }
 
 void read(Sensor &sensor) {
-  String message  = String(sensor.name);
-  char mqttOut[100];
   int returnCode = sensor.read();
+  Serial.print(sensor.name);
+  Serial.print(": ");
   if (returnCode != sensor.OK) {
-    if (returnCode == sensor.LOST_CONNECTION) {
-      message += ": Lost Connection";
-    } else if (returnCode == sensor.BAD_DATA) {
-      message += ": Bad Data";
-    } else if (returnCode == sensor.LOST_CONNECTION_OR_BAD_DATA) {
-      message += ": Lost Connection or Bad Data"; 
-    } else {
-      message += ": Mysteriously Gone Wrong"; 
-    }
-    Serial.println(message);
-    message.toCharArray(mqttOut, 100);
-    client.publish("system", mqttOut);
+    errorMessage = sensor.getErrorMessage(returnCode);
+    Serial.println(errorMessage);
+    errorMessage.toCharArray(mqttFormattedErrorMessage, 100);
+    client.publish("system", mqttFormattedErrorMessage);
   } else {
-    Serial.print(sensor.name);
-    Serial.print(": ");
     Serial.println(sensor.value);
-    char reading[10];
-    dtostrf(sensor.value, 10, 2, reading);
-    client.publish(sensor.name, reading);
+    dtostrf(sensor.value, 10, 2, mqttFormattedSensorValue);
+    client.publish(sensor.name, mqttFormattedSensorValue);
   }
 }

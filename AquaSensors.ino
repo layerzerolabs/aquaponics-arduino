@@ -76,20 +76,27 @@ void loop(void) {
   read(digitalWaterLevel);
   read(light);
   read(pH);
+  client.loop();
 }
 
 void read(Sensor &sensor) {
-  char mqttOut[50];
+  String message  = String(sensor.name);
+  char mqttOut[100];
   int returnCode = sensor.read();
-  if (returnCode == sensor.LOST_CONNECTION){
-    String errorMessage = String("Lost the ");
-    errorMessage += sensor.name;
-    Serial.println(errorMessage);
-    errorMessage.toCharArray(mqttOut, 50);
+  if (returnCode != sensor.OK) {
+    if (returnCode == sensor.LOST_CONNECTION) {
+      message += ": Lost Connection";
+    } else if (returnCode == sensor.BAD_DATA) {
+      message += ": Bad Data";
+    } else if (returnCode == sensor.LOST_CONNECTION_OR_BAD_DATA) {
+      message += ": Lost Connection or Bad Data"; 
+    } else {
+      message += ": Mysteriously Gone Wrong"; 
+    }
+    Serial.println(message);
+    message.toCharArray(mqttOut, 100);
     client.publish("system", mqttOut);
-  } else if (returnCode == sensor.BAD_DATA) {
-    Serial.println("BAD DATA");
-  } else if (returnCode == sensor.OK) {
+  } else {
     Serial.print(sensor.name);
     Serial.print(": ");
     Serial.println(sensor.value);
@@ -97,5 +104,4 @@ void read(Sensor &sensor) {
     dtostrf(sensor.value, 10, 2, reading);
     client.publish(sensor.name, reading);
   }
-  client.loop();
 }

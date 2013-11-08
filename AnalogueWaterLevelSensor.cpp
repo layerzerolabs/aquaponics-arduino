@@ -11,6 +11,9 @@ void AnalogueWaterLevelSensor::setup(int pin) {
 
 int AnalogueWaterLevelSensor::read() {
   int rawValue = analogRead(pin); 
+  if (rawValue > maxSaneRawValue) {
+    return LOST_CONNECTION_OR_BAD_DATA;
+  }
   value = (emptyReading - rawValue) / unit + cmBottom;
   return OK;
 }

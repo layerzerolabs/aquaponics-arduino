@@ -21,7 +21,7 @@ int LightSensor::read() {
   sensors_event_t event;
   tsl->getEvent(&event);
   value = event.light;
-  return 0;
+  return value ? OK : LOST_CONNECTION_OR_BAD_DATA;
 }
 
 

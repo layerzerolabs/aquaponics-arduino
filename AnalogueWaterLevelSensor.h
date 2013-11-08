@@ -12,4 +12,5 @@ class AnalogueWaterLevelSensor : public Sensor
     const float cmRange = 15;
     const float unit = (emptyReading - fullReading) / cmRange;
     const int cmBottom = 5;
+    const int maxSaneRawValue = 1000;
 };

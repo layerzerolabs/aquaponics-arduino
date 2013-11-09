@@ -22,8 +22,14 @@ byte airTempAddress[] = {0x28, 0xFF, 0x00, 0x36, 0x05, 0x00, 0x00, 0x3C};
 byte waterTempAddress[] = {0x28, 0x8A, 0xF9, 0x35, 0x05, 0x00, 0x00, 0x92};
 
 int air1CurrentPin = A7;
+float air1CurrentMultiplier = 1;
+float air1CurrentOffset = 0;
 int air2CurrentPin = A10;
+float air2CurrentMultiplier = 1;
+float air2CurrentOffset = 0;
 int waterCurrentPin = A13;
+float waterCurrentMultiplier = 0.001;
+float waterCurrentOffset = 88;
 int digitalWaterLevelPins[] = {3, 5, 6, 9}; // low to high
 int analogueWaterLevelPin = A1;
 int pHPin = A3;
@@ -61,9 +67,9 @@ void setup(void) {
   }
   airTemp.setup(airTempAddress);
   waterTemp.setup(waterTempAddress);
-  air1Current.setup(air1CurrentPin);
-  air2Current.setup(air2CurrentPin);
-  waterCurrent.setup(waterCurrentPin);
+  air1Current.setup(air1CurrentPin, air1CurrentMultiplier, air1CurrentOffset);
+  air2Current.setup(air2CurrentPin, air2CurrentMultiplier, air2CurrentOffset);
+  waterCurrent.setup(waterCurrentPin, waterCurrentMultiplier, waterCurrentOffset);
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
   light.setup();
@@ -71,15 +77,16 @@ void setup(void) {
 }
 
 void loop(void) {
-  read(airTemp);
-  read(waterTemp);
-  read(air1Current);
-  read(air2Current);
+  //read(airTemp);
+  //read(waterTemp);
+  //read(air1Current);
+  //read(air2Current);
   read(waterCurrent);
-  read(analogueWaterLevel);
-  read(digitalWaterLevel);
-  read(light);
-  read(pH);
+  delay(93);
+  //read(analogueWaterLevel);
+  //read(digitalWaterLevel);
+  //read(light);
+  //read(pH);
   client.loop();
 }
 

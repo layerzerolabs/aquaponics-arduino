@@ -19,7 +19,7 @@ int TemperatureSensor::read() {
   delay(94); // the right delay for 9-bit precision
   
   if (!_oneWire->reset()) {
-     return 1;
+     return LOST_CONNECTION;
   }
   _oneWire->select(address);    
   _oneWire->write(0xBE);   

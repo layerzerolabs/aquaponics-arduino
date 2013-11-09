@@ -24,7 +24,7 @@ The structure is intended to be extensible - if you want to add more sensors, ju
 ## Attributions
 
 Layer Zero Labs cannot claim credit for all of this code!
-If you see your code in here and you're not on the following list, please tell us, as we take attribution seriously.
+If you see your code in here and you're not on the following list, please tell us.
 
 * Current sensor: We took the basic logic from MarkT's post on the [arduino forum](http://forum.arduino.cc/index.php?topic=168468.0;wap2)
 * pH sensor: Code lifted from [macroduino](https://github.com/andrewoke/MacroDuino/blob/master/supportFunctions.h), with the unsigned int tweak suggested by Justin at [praticalmaker](http://www.practicalmaker.com/comment/3258#comment-3258)

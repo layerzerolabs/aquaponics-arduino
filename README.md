@@ -25,8 +25,8 @@ Everything depends on the Arduino library!
 Layer Zero Labs cannot claim credit for all of this code!
 If you see your code in here and you're not on the following list, please tell us, as we take attribution seriously.
 
-* Current sensor: We took the basic logic from MarkT's post at http://forum.arduino.cc/index.php?topic=168468.0;wap2
-* pH sensor: Code pretty much lifted whole from https://github.com/andrewoke/MacroDuino/blob/master/supportFunctions.h, with the unsigned int tweak suggested by Justin at http://www.practicalmaker.com/comment/3258#comment-3258.
+* Current sensor: We took the basic logic from MarkT's post on the [arduino forum](http://forum.arduino.cc/index.php?topic=168468.0;wap2)
+* pH sensor: Code lifted from [macroduino](https://github.com/andrewoke/MacroDuino/blob/master/supportFunctions.h), with the unsigned int tweak suggested by Justin at [praticalmaker](http://www.practicalmaker.com/comment/3258#comment-3258)
 * Temperature Sensor: Lifted from the DallasTemperature library by [Jordan Hochenbaum](http://jordanhochenbaum.com/)(?)  
 
 

@@ -1,5 +1,7 @@
 #include "TemperatureSensor.h"
 
+// Code lifted from DallasTemperature library by Jordan Hockenbaum
+
 TemperatureSensor::TemperatureSensor(char name[]) {
   this->name = name;
 }

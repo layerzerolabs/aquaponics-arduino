@@ -22,11 +22,11 @@ byte airTempAddress[] = {0x28, 0xFF, 0x00, 0x36, 0x05, 0x00, 0x00, 0x3C};
 byte waterTempAddress[] = {0x28, 0x8A, 0xF9, 0x35, 0x05, 0x00, 0x00, 0x92};
 
 int air1CurrentPin = A7;
-float air1CurrentMultiplier = 1;
-float air1CurrentOffset = 0;
+float air1CurrentMultiplier = 0.00124;
+float air1CurrentOffset = 31.6;
 int air2CurrentPin = A10;
-float air2CurrentMultiplier = 1;
-float air2CurrentOffset = 0;
+float air2CurrentMultiplier = 0.0014;
+float air2CurrentOffset = 29;
 int waterCurrentPin = A13;
 float waterCurrentMultiplier = 0.001;
 float waterCurrentOffset = 88;

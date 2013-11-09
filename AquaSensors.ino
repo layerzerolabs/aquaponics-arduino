@@ -77,16 +77,15 @@ void setup(void) {
 }
 
 void loop(void) {
-  //read(airTemp);
-  //read(waterTemp);
-  //read(air1Current);
-  //read(air2Current);
+  read(airTemp);
+  read(waterTemp);
+  read(air1Current);
+  read(air2Current);
   read(waterCurrent);
-  delay(93);
-  //read(analogueWaterLevel);
-  //read(digitalWaterLevel);
-  //read(light);
-  //read(pH);
+  read(analogueWaterLevel);
+  read(digitalWaterLevel);
+  read(light);
+  read(pH);
   client.loop();
 }
 

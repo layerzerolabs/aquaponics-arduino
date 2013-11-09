@@ -8,6 +8,6 @@ class TemperatureSensor : public Sensor
     void setup(byte address[]);
     int read();
   private:
-    OneWire* _oneWire;
+    OneWire* oneWire;
     byte* address;
 };

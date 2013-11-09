@@ -23,9 +23,6 @@ int TemperatureSensor::read() {
   }
   _oneWire->select(address);    
   _oneWire->write(0xBE);   
-  
-  
-  delay(1000);
 
   byte i;
   for ( i = 0; i < 9; i++) {           // we need 9 bytes

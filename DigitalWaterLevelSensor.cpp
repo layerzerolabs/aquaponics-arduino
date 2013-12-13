@@ -16,7 +16,7 @@ int DigitalWaterLevelSensor::read() {
   for(int i = 0; i <= 3; i++) { // read each switch in turn
     value += !digitalRead(pins[i]) << i; // switch is 0 when high. Bitshifting adds 1,2,4,8
   }
-  return 0;
+  return OK;
 }
 
 

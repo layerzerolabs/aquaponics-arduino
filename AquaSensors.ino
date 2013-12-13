@@ -13,6 +13,7 @@
 #include "DigitalWaterLevelSensor.h"
 #include "LightSensor.h"
 #include "pHSensor.h"
+#include "ECSensor.h"
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
 byte ip[]     = { 172, 16, 1, 92 };                       // the arduino's ip address
@@ -52,6 +53,7 @@ AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
 LightSensor              light("Far Light");
 pHSensor                 pH("pH");
+ECSensor                 ec("EC");
 
 void setup(void) {
   light.setup();
@@ -74,6 +76,7 @@ void setup(void) {
   digitalWaterLevel.setup(digitalWaterLevelPins);
   light.setup();
   pH.setup(pHPin);
+  ec.setup();
 }
 
 void loop(void) {
@@ -84,8 +87,9 @@ void loop(void) {
   read(waterCurrent);
   read(analogueWaterLevel);
   read(digitalWaterLevel);
-  //read(light);
+  read(light);
   read(pH);
+  //read(ec);
   client.loop();
 }
 

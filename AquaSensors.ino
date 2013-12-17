@@ -11,7 +11,7 @@
 #include "CurrentSensor.h"
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
-#include "LightSensor.h"
+//#include "LightSensor.h"
 #include "pHSensor.h"
 //#include "ECSensor.h"
 
@@ -51,12 +51,11 @@ CurrentSensor            air1Current("Air Pump 1 Current");
 CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
-LightSensor              light("Far Light");
+//LightSensor              light("Far Light");
 pHSensor                 pH("pH");
 //ECSensor                 ec("EC");
 
 void setup(void) {
-  light.setup();
   Serial.begin(9600);
   Serial.println("Starting up");
   Ethernet.begin(mac, ip);
@@ -74,9 +73,10 @@ void setup(void) {
   waterCurrent.setup(waterCurrentPin, waterCurrentMultiplier, waterCurrentOffset);
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
-  light.setup();
+  //light.setup();
   pH.setup(pHPin);
-//  ec.setup();
+  //ec.setup();
+  Serial.println("Finished sensor setup");
 }
 
 void loop(void) {
@@ -87,7 +87,7 @@ void loop(void) {
   read(waterCurrent);
   read(analogueWaterLevel);
   read(digitalWaterLevel);
-  read(light);
+  //read(light);
   read(pH);
   //read(ec);
   client.loop();
@@ -108,3 +108,4 @@ void read(Sensor &sensor) {
     client.publish(sensor.name, mqttFormattedSensorValue);
   }
 }
+

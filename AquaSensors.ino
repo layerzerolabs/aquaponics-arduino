@@ -11,9 +11,9 @@
 #include "CurrentSensor.h"
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
-//#include "LightSensor.h"
+//#include "LightSensor.h" crashes without this
 #include "pHSensor.h"
-//#include "ECSensor.h"
+//#include "ECSensor.h" crashes without this
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
 byte ip[]     = { 172, 16, 1, 92 };                       // the arduino's ip address
@@ -51,9 +51,9 @@ CurrentSensor            air1Current("Air Pump 1 Current");
 CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
-//LightSensor              light("Far Light");
+//LightSensor              light("Far Light"); crashes without this
 pHSensor                 pH("pH");
-//ECSensor                 ec("EC");
+//ECSensor                 ec("EC"); crashes without this
 
 void setup(void) {
   Serial.begin(9600);
@@ -73,23 +73,23 @@ void setup(void) {
   waterCurrent.setup(waterCurrentPin, waterCurrentMultiplier, waterCurrentOffset);
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
-  //light.setup();
+  //light.setup(); crashes without this
   pH.setup(pHPin);
-  //ec.setup();
+  //ec.setup(); crashes without this
   Serial.println("Finished sensor setup");
 }
 
 void loop(void) {
-  read(airTemp);
-  read(waterTemp);
+  //read(airTemp); 22:30 26 jan
+  //read(waterTemp); 22:30 26 jan
   read(air1Current);
   read(air2Current);
   read(waterCurrent);
   read(analogueWaterLevel);
   read(digitalWaterLevel);
-  //read(light);
+  //read(light); crashes without this
   read(pH);
-  //read(ec);
+  //read(ec); crashes without this
   client.loop();
 }
 

@@ -1,7 +1,3 @@
-aquaponics
-==========
+This code is outdated. It is for our old, wired system, that is in use and maintained, but not recommended for new systems.
 
-arduino part of aquaponics control system
-
-* Reads various sensors
-* Publishes readings over mqtt
+Instead, please consider the combination of aqua-wireless-node-red and aquaponics_jeenode.

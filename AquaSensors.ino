@@ -11,7 +11,7 @@
 #include "CurrentSensor.h"
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
-//#include "LightSensor.h" crashes without this
+//#include "LightSensor.h"
 #include "pHSensor.h"
 //#include "ECSensor.h" crashes without this
 
@@ -51,7 +51,7 @@ CurrentSensor            air1Current("Air Pump 1 Current");
 CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
-//LightSensor              light("Far Light"); crashes without this
+//LightSensor              light("Far Light");
 pHSensor                 pH("pH");
 //ECSensor                 ec("EC"); crashes without this
 
@@ -73,21 +73,21 @@ void setup(void) {
   waterCurrent.setup(waterCurrentPin, waterCurrentMultiplier, waterCurrentOffset);
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
-  //light.setup(); crashes without this
+  //light.setup();
   pH.setup(pHPin);
   //ec.setup(); crashes without this
   Serial.println("Finished sensor setup");
 }
 
 void loop(void) {
-  //read(airTemp); 22:30 26 jan
-  //read(waterTemp); 22:30 26 jan
+  read(airTemp);
+  read(waterTemp);
   read(air1Current);
   read(air2Current);
   read(waterCurrent);
   read(analogueWaterLevel);
   read(digitalWaterLevel);
-  //read(light); crashes without this
+  //read(light);
   read(pH);
   //read(ec); crashes without this
   client.loop();

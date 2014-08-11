@@ -12,7 +12,7 @@
 #include "AnalogueWaterLevelSensor.h"
 #include "DigitalWaterLevelSensor.h"
 //#include "LightSensor.h"
-#include "pHSensor.h"
+//#include "pHSensor.h"
 //#include "ECSensor.h" crashes without this
 
 byte mac[]    = { 0x90, 0xA2, 0xDA, 0x0D, 0xc0, 0xAB };  // the arduino's mac address
@@ -33,7 +33,7 @@ float waterCurrentMultiplier = 0.001;
 float waterCurrentOffset = 88;
 int digitalWaterLevelPins[] = {3, 5, 6, 9}; // low to high
 int analogueWaterLevelPin = A1;
-int pHPin = A3;
+//int pHPin = A3;
 
 void callback(char* topic, byte* payload, unsigned int length) {} // handle incoming mqtt
 
@@ -52,7 +52,7 @@ CurrentSensor            air2Current("Air Pump 2 Current");
 AnalogueWaterLevelSensor analogueWaterLevel("Analogue Water Level");
 DigitalWaterLevelSensor  digitalWaterLevel("Digital Water Level");
 //LightSensor              light("Far Light");
-pHSensor                 pH("pH");
+//pHSensor                 pH("pH");
 //ECSensor                 ec("EC"); crashes without this
 
 void setup(void) {
@@ -74,7 +74,7 @@ void setup(void) {
   analogueWaterLevel.setup(analogueWaterLevelPin);
   digitalWaterLevel.setup(digitalWaterLevelPins);
   //light.setup();
-  pH.setup(pHPin);
+  //pH.setup(pHPin);
   //ec.setup(); crashes without this
   Serial.println("Finished sensor setup");
 }
@@ -88,7 +88,7 @@ void loop(void) {
   read(analogueWaterLevel);
   read(digitalWaterLevel);
   //read(light);
-  read(pH);
+  //read(pH);
   //read(ec); crashes without this
   client.loop();
 }
